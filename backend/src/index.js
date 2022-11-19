@@ -7,8 +7,10 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 
 //const v1Router = require("./v1/routes");
-const v1foodItemRouter = require("./v1/routes/foodItemRoutes");
+const v1ItemRouter = require("./v1/routes/ItemRoutes");
+//rename and implement routes 
 
+//CHANGE LATER
 mongoose.connect('mongodb://localhost:27017/FoodDB')
 const db = mongoose.connection
 
@@ -35,8 +37,8 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-//Now we're catching all requests that are going to /api/v1/foodItems with our v1WorkoutRouter.
-app.use("/api/v1", v1foodItemRouter);
+//Now we're catching all requests that are going to /api/v1/Items with our v1WorkoutRouter.
+app.use("/api/", v1ItemRouter);
 
 app.listen(PORT, () => { 
     console.log(`API is listening on port ${PORT}`); 

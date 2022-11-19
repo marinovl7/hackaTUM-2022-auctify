@@ -1,4 +1,9 @@
-const foodItemService = require('../services/foodItemService');
+const { query } = require('express');
+const ItemService = require('../services/ItemService');
+
+const rsp = await fetchGetWithQuery('http://localhost:5000/api/v1/foodItems/getAllItemsSortedByLatestDate/FoodItems','')
+const tmp = await rsp.json();
+
 
 const addOneItem = (req, res) => {
     const path_params = req.params
@@ -16,14 +21,7 @@ const addOneItem = (req, res) => {
     const collectionName = path_params.collection;
 
     //check request body for missing keys
-    if (
-        !body.name ||
-        !body.category ||
-        !body.notes ||
-        !body.quantity ||
-        !body.expirationDate ||
-        !body.addDate ||
-        !body.averageLifeTime
+    if (!body
     ) {
         res
             .status(400)
@@ -34,7 +32,7 @@ const addOneItem = (req, res) => {
         return;
     }
 
-    const newItem = {
+    /*const newItem = {
         name: body.name,
         category: body.category,
         notes: body.notes,
@@ -42,10 +40,13 @@ const addOneItem = (req, res) => {
         expirationDate: body.expirationDate,
         addDate: body.addDate,
         averageLifeTime: body.averageLifeTime
-    };
+    };*/
+
+    console.log(body);
+    const newItem = body;
 
     try {
-        foodItemService.addOneItem(collectionName, newItem)
+        ItemService.addOneItem(collectionName, newItem)
         .then((addedItem) => {
             res.status(201).send({ status: "Created", data: addedItem });
         })
@@ -73,14 +74,7 @@ const getOneItem = (req, res) => {
     }
     const collectionName = path_params.collection;
 
-    if (
-        !query_params.name && 
-        !query_params.category &&
-        !query_params.notes &&
-        !query_params.quantity &&
-        !query_params.expirationDate &&
-        !query_params.addDate &&
-        !query_params.averageLifeTime
+    if (!query_params
     ) {
         res
             .status(400)
@@ -91,30 +85,11 @@ const getOneItem = (req, res) => {
         return;
     }
 
-    if (query_params.name) {
-        var query = { name: query_params.name }
-    }
-    if (query_params.category) {
-        var query = { category: query_params.category }
-    }
-    if (query_params.notes) {
-        var query = { notes: query_params.notes }
-    }
-    if (query_params.quantity) {
-        var query = { quantity: query_params.quantity }
-    }
-    if (query_params.expirationDate) {
-        var query = { expirationDate: query_params.expirationDate }
-    }
-    if (query_params.addDate) {
-        var query = { addDate: query_params.addDate }
-    }
-    if (query_params.averageLifeTime) {
-        var query = { averageLifeTime: query_params.averageLifeTime }
-    }
+    console.log(query_params)
+    let query = query_params;
 
     try {
-        foodItemService.getOneItem(collectionName, query)
+        ItemService.getOneItem(collectionName, query)
         .then((result) => {
             res.status(200).send({ status: "OK", data: result });
         })    
@@ -138,14 +113,7 @@ const getMultipleItems = (req, res) => {
     }
     const collectionName = path_params.collection;
 
-    if (
-        !query_params.name && 
-        !query_params.category &&
-        !query_params.notes &&
-        !query_params.quantity &&
-        !query_params.expirationDate &&
-        !query_params.addDate &&
-        !query_params.averageLifeTime
+    if (!query_params
     ) {
         res
             .status(400)
@@ -156,30 +124,10 @@ const getMultipleItems = (req, res) => {
         return;
     }
 
-    if (query_params.name) {
-        var query = { name: query_params.name }
-    }
-    if (query_params.category) {
-        var query = { category: query_params.category }
-    }
-    if (query_params.notes) {
-        var query = { notes: query_params.notes }
-    }
-    if (query_params.quantity) {
-        var query = { quantity: query_params.quantity }
-    }
-    if (query_params.expirationDate) {
-        var query = { expirationDate: query_params.expirationDate }
-    }
-    if (query_params.addDate) {
-        var query = { addDate: query_params.addDate }
-    }
-    if (query_params.averageLifeTime) {
-        var query = { averageLifeTime: query_params.averageLifeTime }
-    }
+    let query = query_params;
     
     try {
-        foodItemService.getMultipleItems(collectionName, query)
+        ItemService.getMultipleItems(collectionName, query)
         .then((result) => {
             res.status(200).send({ status: "OK", data: result });
         })    
@@ -202,13 +150,77 @@ const getAllItems = async (req, res) => {
     }
     let collectionName = path_params.collection;
     try {
-        let result = await foodItemService.getAllItems(collectionName);
+        let result = await ItemService.getAllItems(collectionName);
         res.status(200).send({ status: "OK", data: result });
     }
     catch (error) {
         throw error;
     }
 }
+
+const deleteOneItem = (req, res) => {
+    const path_params = req.params;
+    const query_params = req.query;
+    
+    if(!path_params.collection) {
+        res
+            .status(400)
+            .send({
+                status: "FAILED",
+                data: { error: "Collection name is missing" }
+            });
+        return;
+    }
+    const collectionName = path_params.collection;
+    
+    if (!query_params
+    ) {
+        res
+            .status(400)
+            .send({
+                status: "Bad Request",
+                data: { error: "Query key value pairs are missing in request" }
+            });
+        return;
+    }
+
+    let query = query_params
+   
+
+    try {
+        foodItemService.deleteOneItem(collectionName, query)
+        .then((result) => {
+            res.status(200).send({ status: "OK", data: result });
+        })    
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+const getAllItemsSortedByLatestDate = async (req, res) => {
+    const path_params = req.params
+    const query_params = req.query
+    if(!path_params.collection) {
+        res
+            .status(400)
+            .send({
+                status: "FAILED",
+                data: { error: "Collection name is missing" }
+            });
+        return;
+    }
+    let collectionName = path_params.collection;
+    let sortOrder = query_params.sortOrder;
+    try {
+        let result = await foodItemService.getAllItemsSortedByLatestDate(collectionName, sortOrder);
+        res.status(200).send({ status: "OK", data: result });
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 
 
 //create the updateFilter JSON object by assembling a string
@@ -242,5 +254,6 @@ module.exports = {
     getOneItem,
     getMultipleItems,
     getAllItems,
-
+    deleteOneItem,
+    getAllItemsSortedByLatestDate
 }
