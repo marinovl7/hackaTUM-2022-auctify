@@ -1,5 +1,5 @@
-const { db } = require('../models/FoodItem');
-const FoodItem = require('../models/FoodItem');
+const { db } = require('../models/Item');
+const Item = require('../models/Item');
 
 
 const addOneItem = (collectionName, item) => {
@@ -23,9 +23,19 @@ function getAllItems(collectionName) {
     return db.collection(collectionName).find().toArray();
 }
 
+function deleteOneItem(collectionName, query) {
+    return db.collection(collectionName).deleteOne(query);
+}
+
+function getAllItemsSortedByLatestDate(collectionName, sortOrder) {
+    return db.collection(collectionName).find().sort({'deadline': sortOrder}).toArray()
+}
+
 module.exports = {
     addOneItem,
     getOneItem,
     getMultipleItems,
-    getAllItems
+    getAllItems,
+    deleteOneItem,
+    getAllItemsSortedByLatestDate
 }

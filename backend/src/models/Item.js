@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const foodItemSchema = new Schema({
+const ItemSchema = new Schema({
     name: { type: String },
     category: { type: String },
     notes: { type: String },
@@ -10,5 +10,5 @@ const foodItemSchema = new Schema({
     addDate: { type: String }
 })
 
-const FoodItem = mongoose.model('FoodDB', foodItemSchema)
-module.exports = FoodItem
+const Item = mongoose.model('FoodDB', ItemSchema)
+module.exports = Item
