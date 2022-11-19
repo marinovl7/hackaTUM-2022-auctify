@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const colors = {
   blue: {
-    light: '#88C9DE',
+    light: '#a937cc',
     dark: '#0a1f29'
   },
   gray: {
@@ -24,7 +24,7 @@ export const themeOptions = {
     primary: {
       main: colors.white.light,
       light: colors.blue.light,
-      dark: colors.blue.dark
+      dark: colors.black.main
     },
     secondary: {
       main: colors.gray.light,
@@ -54,6 +54,11 @@ export const themeOptions = {
         },
         textPrimary: {
           color: colors.blue.dark
+        },
+        contained: {
+          '&:hover': {
+            backgroundColor: '#a937cc'
+          }
         }
       }
     },
