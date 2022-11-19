@@ -77,5 +77,5 @@ const productSchema = new Schema({
     }
 })
 
-const Product = mongoose.model('Product', productSchema);
-module.exports = Product;
+const Product = mongoose.model('HackaTUM_TEST', productSchema);
+module.exports = Product

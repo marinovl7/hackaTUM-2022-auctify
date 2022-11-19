@@ -3,7 +3,10 @@ const ItemService = require('../services/ItemService');
 
 //const rsp = await fetchGetWithQuery('http://localhost:5000/api/v1/foodItems/getAllItemsSortedByLatestDate/FoodItems','')
 //const tmp = await rsp.json();
-
+function fetchGetWithQuery(api_url, path_param, query_key, query_value) {
+    let url = api_url + `${path_param}` + `?` + query_key + `=` + query_value;
+    return fetch(url, { "method": "GET" });
+}
 
 const addOneItem = (req, res) => {
     const path_params = req.params
