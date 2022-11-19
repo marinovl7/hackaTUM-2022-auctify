@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <Home />
   },
   {
-    path: '/items',
+    path: '/marketplace/:productId',
     element: <CardDetails />
   }
 ]);

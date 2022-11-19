@@ -5,51 +5,62 @@ import {
   CardContent,
   Typography,
   useTheme,
-  Grid
+  Box
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import itemImg from '../../common/images/item.webp';
 
-export default function ItemCard() {
+export default function ItemCard({ item }) {
+  const router = useNavigate();
+  const deadlineDate = new Date(Date.parse(item.deadline));
+  const month = deadlineDate.getMonth();
+  const day = deadlineDate.getDate();
+  const dateFormat = `Auction ends at: ${day}/${month}`;
   const theme = useTheme();
   return (
     <Card
       sx={{
         maxWidth: 345,
+        minHeight: 200,
         backgroundColor: '#075E82'
+      }}
+      onClick={() => {
+        router(`/marketplace/${item._id}`);
       }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
           image={itemImg}
-          alt="green iguana"
+          alt={item.name}
           sx={{ borderBottom: '2px solid #fff' }}
         />
-        <CardContent>
+        <CardContent
+          sx={{
+            display: 'flex !important',
+            alignItems: 'start',
+            justifyContent: 'start',
+            flexDirection: 'column',
+            minHeight: 200,
+            height: '100%'
+          }}>
           <Typography
-            gutterBottom
             variant="h5"
             component="div"
-            sx={{ color: theme.palette.primary.main }}>
-            Cupboard
+            sx={{ color: theme.palette.primary.main, justifySelf: 'end' }}>
+            {item.name}
           </Typography>
           <Typography variant="body2" sx={{ color: theme.palette.primary.main }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {item.description_summ}
           </Typography>
-          <Grid
-            container
-            sx={{ color: theme.palette.primary.main, mt: theme.spacing(1) }}
-            spacing={2}>
-            <Grid item xs={4}>
-              <Typography variant="subtitle1">Current Bid:</Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-                $80.00
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box sx={{ mt: theme.spacing(4) }}>
+            <Typography variant="subtitle1" sx={{ color: theme.palette.primary.main }}>
+              Current Bid: {item.startingPrice}
+            </Typography>
+            <Typography variant="subtitle1" sx={{ color: theme.palette.primary.main }}>
+              {dateFormat}
+            </Typography>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>
