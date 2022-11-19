@@ -24,7 +24,7 @@ function createNewDateWithHourDiff(date, hourDiff) {
 }
 
 // Connect to DB
-const db_name = "HackaTUM_TEST"
+const db_name = "HackaTUM_TEST";
 mongoose.connect('mongodb://localhost:27017/' + db_name)
     .then(() => {
         console.log("SEED: Successfully connected to", db_name, "Mongo Database via Mongoose.");
@@ -67,6 +67,7 @@ const locationOptions = [  // Note that longitude comes first in a GeoJSON coord
         coordinates: [8.682127, 50.110924],  // Frankfurt
     }
 ];
+const locationStrOptions = ["Munich, Germany", "Augsburg, Germany", "Frankfurt am Main, Germany"];
 
 // Generate fake seed product data - Seed script (200 permutations)
 
@@ -76,6 +77,7 @@ const promises = [];
 for (firstWord of nameFirstOptions) {
     for (adjWord of nameAdjOptions) {
         for (nounWord of nameNounOptions) {
+            const locationIndex = getRandomInt(0, locationOptions.length - 1);
             const p = new Product({
                 name: `${firstWord} ${adjWord} ${nounWord}`,
                 category: categoryOptions[getRandomInt(0, categoryOptions.length - 1)],
@@ -86,7 +88,8 @@ for (firstWord of nameFirstOptions) {
                 image: "link/to/image/",
                 available: true,
                 deadline: createNewDateWithHourDiff(currentdate, getRandomArbitrary(deadlineMinHourDiff, deadlineMaxHourDiff)),
-                location: locationOptions[getRandomInt(0, locationOptions.length - 1)]
+                location: locationOptions[locationIndex],
+                locationStr: locationStrOptions[locationIndex]
             })
             promises.push(
                 p.save()

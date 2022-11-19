@@ -9,10 +9,6 @@ const priceArrLength = (val) => {
     return val.length === 3;
 }
 
-const coordLength = (val) => {
-    return val.length === 2;
-}
-
 // Schema
 
 const productSchema = new Schema({
@@ -73,6 +69,10 @@ const productSchema = new Schema({
                 default: [0, 0]
             }
         },
+        required: true
+    },
+    locationStr: {
+        type: String,
         required: true
     }
 })
