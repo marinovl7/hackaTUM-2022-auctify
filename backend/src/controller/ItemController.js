@@ -1,8 +1,8 @@
 const { query } = require('express');
 const ItemService = require('../services/ItemService');
 
-const rsp = await fetchGetWithQuery('http://localhost:5000/api/v1/foodItems/getAllItemsSortedByLatestDate/FoodItems','')
-const tmp = await rsp.json();
+//const rsp = await fetchGetWithQuery('http://localhost:5000/api/v1/foodItems/getAllItemsSortedByLatestDate/FoodItems','')
+//const tmp = await rsp.json();
 
 
 const addOneItem = (req, res) => {
@@ -149,6 +149,7 @@ const getAllItems = async (req, res) => {
         return;
     }
     let collectionName = path_params.collection;
+    console.log(collectionName)
     try {
         let result = await ItemService.getAllItems(collectionName);
         res.status(200).send({ status: "OK", data: result });

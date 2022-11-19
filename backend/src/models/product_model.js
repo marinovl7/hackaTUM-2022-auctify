@@ -14,7 +14,6 @@ const coordLength = (val) => {
 }
 
 // Schema
-
 const productSchema = new Schema({
     name: {
         type: String,
@@ -69,5 +68,7 @@ const productSchema = new Schema({
     }
 })
 
-const Product = mongoose.model('Product', productSchema);
-module.exports = Product;
+//const Product = mongoose.model('Product', productSchema);
+const Item = mongoose.model('HackaTUM_TEST', productSchema)
+
+module.exports = Item;
