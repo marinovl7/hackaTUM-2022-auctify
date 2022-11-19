@@ -8,6 +8,10 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 // const morgan = require('morgan');
 
+const Product = require('./models/product_model');
+const Order = require('./models/order_model');
+const User = require('./models/user_model');
+
 // Setup
 
 const port = 3500;
@@ -33,6 +37,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
