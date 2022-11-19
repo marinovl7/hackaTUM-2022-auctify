@@ -1,4 +1,4 @@
-import { ImageListItem, ImageList, Box } from '@mui/material';
+import { ImageListItem, ImageList, Box, useMediaQuery } from '@mui/material';
 
 const itemData = [
   {
@@ -28,14 +28,18 @@ const itemData = [
 ];
 
 export default function ImageListDetails() {
+  const matches = useMediaQuery('(max-width:900px');
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContenr: 'center' }}>
-      <ImageList sx={{ width: 800, zIndex: 199 }} cols={3} rowHeight={350}>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <ImageList
+        sx={{ width: matches ? 300 : 800, zIndex: 199 }}
+        cols={matches ? 1 : 3}
+        rowHeight={300}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
-              src={`${item.img}?w=350&h=350&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=350&h=350&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=300&h=300&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=300&h=300&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
             />

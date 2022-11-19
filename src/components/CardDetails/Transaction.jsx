@@ -10,10 +10,16 @@ export default function Transaction({ username, bid }) {
         container
         display="flex"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="center"
         sx={{ padding: theme.spacing(2) }}>
-        <Grid item xs={12}>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Grid item lg={12} md={9}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '20px'
+            }}>
             <Box
               sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
               <AccountCircleIcon size="medium" sx={{ color: '#fff' }} />

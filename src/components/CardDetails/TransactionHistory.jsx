@@ -1,4 +1,4 @@
-import { Grid, Typography, useTheme } from '@mui/material';
+import { Grid, Typography, useTheme, Box } from '@mui/material';
 import Transaction from './Transaction';
 
 const transactions = [
@@ -11,20 +11,24 @@ const transactions = [
 export default function TransactionHistory() {
   const theme = useTheme();
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }}>
       <Typography
         variant="h4"
         sx={{
           color: theme.palette.primary.main,
-          textAlign: 'center',
-          borderLeft: '2px solid #fff'
+          textAlign: 'center'
         }}>
         Bids
       </Typography>
       <Grid
         sx={{
           backgroundColor: theme.palette.primary.dark,
-          borderLeft: '2px solid #fff',
           height: '100%'
         }}
         container
@@ -37,6 +41,6 @@ export default function TransactionHistory() {
           );
         })}
       </Grid>
-    </>
+    </Box>
   );
 }
