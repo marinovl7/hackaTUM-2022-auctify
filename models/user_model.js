@@ -42,18 +42,18 @@ const UserSchema = new Schema({
         required: true
     },
     // Transactions Info
-    currentOrders: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Order'
-        }
-    ],
-    pastTransactions: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Order'
-        }
-    ],
+    /*     currentOrders: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Order'
+            }
+        ],
+        pastTransactions: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Order'
+            }
+        ], */  // NOTE: Orders collection by itself, Users collection also by itself -> get relation via queries.
     totalItemsSold: {
         type: Number,
         default: 0
