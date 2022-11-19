@@ -1,5 +1,5 @@
-const { db } = require('../models/Item');
-const Item = require('../models/Item');
+const { db } = require('../models/product_model');
+const Item = require('../models/product_model');
 
 
 const addOneItem = (collectionName, item) => {

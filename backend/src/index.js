@@ -10,8 +10,9 @@ const bodyParser = require("body-parser");
 const v1ItemRouter = require("./v1/routes/ItemRoutes");
 //rename and implement routes 
 
+const dbname = 'HackaTUM_TEST'
 //CHANGE LATER
-mongoose.connect('mongodb://localhost:27017/FoodDB')
+mongoose.connect(`mongodb://localhost:27017/${dbname}`)
 const db = mongoose.connection
 
 db.on('error', (err) => {
