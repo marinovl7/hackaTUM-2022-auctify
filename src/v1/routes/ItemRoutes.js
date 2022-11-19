@@ -6,12 +6,12 @@ const router = express.Router();
 router.post("/addOneItem/:collection", ItemController.addOneItem);
 
 router.get('/getOneItem/:collection', ItemController.getOneItem);
+router.get('/getItemById/:collection', ItemController.getItemById);
+
 
 router.get('/getMultipleItems/:collection', ItemController.getMultipleItems);
 
 router.get('/getAllItems/:collection', ItemController.getAllItems);
-
-router.get('/getItemById/:collection', ItemController.getItemById);
 
 router.delete('/deleteOneItem/:collection', ItemController.deleteOneItem);
 

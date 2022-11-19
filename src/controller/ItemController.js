@@ -64,8 +64,10 @@ const addOneItem = (req, res) => {
 
 const getItemById = (req, res) => {
     const path_params = req.params;
+    //console.log(req.params.collection)
     const query_params = req.query;
-    
+    //console.log(query_params);
+
     if(!path_params.collection) {
         res
             .status(400)
@@ -88,14 +90,14 @@ const getItemById = (req, res) => {
         return;
     }
 
-    console.log(query_params)
-    let query = query_params;
+    let query = query_params._id;//._id
+    console.log(query)
 
     try {
         return ItemService.getItemById(collectionName, query)
-        /*.then((result) => {
+        .then((result) => {
             res.status(200).send({ status: "OK", data: result });
-        }) */    
+        }) 
     }
     catch (error) {
         throw error;

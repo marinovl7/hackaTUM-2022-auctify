@@ -1,4 +1,6 @@
 const { mongoose } = require('mongoose');
+var mongodb = require('mongodb');   
+
 const { db } = require('../../models/product_model');
 const Item = require('../../models/product_model');
 
@@ -13,7 +15,7 @@ const addOneItem = (collectionName, item) => {
 }
 
 function getItemById(collectionName, query) {
-    return db.collection(collectionName).find({"_id":query})
+    return db.collection(collectionName).findOne(mongodb.ObjectId(query));
 }
 
 function getOneItem(collectionName, query) {

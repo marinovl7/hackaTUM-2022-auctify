@@ -60,9 +60,10 @@ app.use(function(req, res, next) {
 
 // HOME tab
 
+/*
 app.get('/', (req, res) => {
     res.render('home.ejs');
-})
+})*/
 
 app.use("/api/", v1ItemRouter);
 
