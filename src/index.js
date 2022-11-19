@@ -5,15 +5,15 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import { CacheProvider } from '@emotion/react';
 import theme from './common/theme';
 import createEmotionCache from './common/createEmotionCache';
-import App from './App';
 import Home from '../src/pages/home';
+import Marketplace from './pages/marketplace';
 
 const emotionCache = createEmotionCache();
 
 const router = createBrowserRouter([
   {
-    path: '/home',
-    element: <App />
+    path: '/marketplace',
+    element: <Marketplace />
   },
   {
     path: '/',

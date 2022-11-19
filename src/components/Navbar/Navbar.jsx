@@ -55,7 +55,10 @@ export default function Navbar(props) {
 
   return (
     <>
-      <AppBar component="nav" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+      <AppBar
+        position="absolute"
+        component="nav"
+        sx={{ backgroundColor: 'transparent', boxShadow: 'none', zIndex: 9999 }}>
         <Toolbar>
           <IconButton
             aria-label="open drawer"
