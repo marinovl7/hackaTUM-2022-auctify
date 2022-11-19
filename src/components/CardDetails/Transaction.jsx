@@ -18,7 +18,8 @@ export default function Transaction({ username, bid }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              gap: '20px'
+              gap: '20px',
+              paddingRight: '20px'
             }}>
             <Box
               sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
