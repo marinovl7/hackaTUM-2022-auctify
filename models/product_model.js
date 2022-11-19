@@ -37,9 +37,14 @@ const productSchema = new Schema({
         required: true,
         minLength: 5
     },
+    startingPrice: {
+        type: Number,
+        required: true,
+        min: 1.00
+    },
     priceArr: {
         type: [Number],
-        required: true,
+        required: true,  // NOTE: missing user relationships to these prices. Add later, when users are implemented.
         validate: [priceArrLength, 'Price history array should be of (fixed) length 3.']
     },
     image: {
@@ -56,16 +61,19 @@ const productSchema = new Schema({
         required: true
     },
     location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
+        type: Object,
+        properties: {
+            type: {
+                type: String,
+                enum: 'Point',
+                default: 'Point'
+            },
+            coordinates: {
+                type: [Number],
+                default: [0, 0]
+            }
         },
-        coordinates: {
-            type: [Number],
-            required: true,
-            validate: [coordLength, 'Coordinate array should be of length 2.']
-        }
+        required: true
     }
 })
 
