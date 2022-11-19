@@ -1,15 +1,17 @@
 import { Grid, Typography, useTheme, Box, Button } from '@mui/material';
 import GavelIcon from '@mui/icons-material/Gavel';
 import Transaction from './Transaction';
-
-const transactions = [
-  { username: 'Idiot Idiot', bid: '20$' },
-  { username: 'Idiot Idiot', bid: '20$' },
-  { username: 'Idiot Idiot', bid: '20$' },
-  { username: 'Idiot Idiot', bid: '20$' }
-];
+import { useState } from 'react';
 
 export default function TransactionHistory() {
+  const transactions = [
+    { username: 'Andrea Racheta', bid: 10.0 },
+    { username: 'Nicolas Moro', bid: 15.0 },
+    { username: 'Lachezar Marinov', bid: 20.0 },
+    { username: 'Zhivomir Grozev', bid: 25.0 }
+  ];
+  const [transactionsArray, setTransactions] = useState(transactions);
+  const [step, setStep] = useState(transactions[transactions.length - 1].bid);
   const theme = useTheme();
   return (
     <Box
@@ -37,7 +39,7 @@ export default function TransactionHistory() {
         alignItems="center"
         justifyContent="start"
         flexDirection="column">
-        {transactions.map((transaction) => {
+        {transactionsArray.map((transaction) => {
           return (
             <Transaction key={transaction} username={transaction.username} bid={transaction.bid} />
           );
@@ -46,15 +48,19 @@ export default function TransactionHistory() {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: '#D345FF',
+          backgroundColor: '#40B7A0',
           color: theme.palette.primary.main,
           borderRadius: '12px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
+        }}
+        onClick={() => {
+          setTransactions([...transactions, { username: 'Sami Mattarino', bid: step + 5.0 }]);
+          setStep((prev) => prev + 5);
         }}>
         <GavelIcon size="medium" sx={{ color: '#fff' }} />
-        <Typography variant="body1">Bid $24.00</Typography>
+        <Typography variant="body1">Bid ${step + 5.0}</Typography>
       </Button>
     </Box>
   );

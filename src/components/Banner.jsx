@@ -1,7 +1,12 @@
 import { Box, Button, Typography, useTheme } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import homeImg from '../common/images/homeimg.webp';
 
 export default function Banner() {
+  const router = useNavigate();
+  function handleClick() {
+    router('/auth');
+  }
   const theme = useTheme();
   return (
     <Box
@@ -30,9 +35,10 @@ export default function Banner() {
           Place your household items at auction and receive more value for your old stuff
         </Typography>
         <Button
+          onClick={handleClick}
           variant="contained"
           sx={{
-            backgroundColor: '#D345FF',
+            backgroundColor: '#40B7A0',
             color: theme.palette.primary.main,
             borderRadius: '12px',
             width: theme.spacing(14)

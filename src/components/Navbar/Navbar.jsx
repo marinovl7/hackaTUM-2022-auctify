@@ -15,7 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const navItems = ['Marketplace', 'Login', 'Create Auction', 'Profile'];
+const navItems = ['Marketplace', 'Auth', 'Create Auction', 'Profile'];
 
 export default function Navbar(props) {
   const { window } = props;
@@ -35,7 +35,7 @@ export default function Navbar(props) {
         color: theme.palette.primary.main
       }}>
       <Typography variant="h5" sx={{ my: 2 }}>
-        hAuction
+        Auctify
       </Typography>
       <Divider sx={{ backgroundColor: theme.palette.primary.main }} />
       <List
@@ -49,7 +49,7 @@ export default function Navbar(props) {
           <Button key={item}>
             <Link
               relative="path"
-              to={`/marketplace`}
+              to={`/${item.toLowerCase()}`}
               style={{
                 textAlign: 'center',
                 color: '#fff',
@@ -93,14 +93,14 @@ export default function Navbar(props) {
               display: { xs: 'none', md: 'block' },
               color: theme.palette.background.default
             }}>
-            hAuction
+            Auctify
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item}>
                 <Link
                   relative="path"
-                  to={`/marketplace`}
+                  to={`/${item.toLowerCase()}`}
                   style={{
                     textAlign: 'center',
                     color: '#fff',

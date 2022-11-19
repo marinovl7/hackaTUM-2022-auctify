@@ -4,4 +4,4 @@ export const getAllProducts = 'getAllItems/products';
 
 export const getFilteredProducts = 'getMultipleItems/products?category=';
 
-export const getSingleProduct = 'getMultipleItems/products?_id=';
+export const getSingleProduct = 'get/products?_id=';

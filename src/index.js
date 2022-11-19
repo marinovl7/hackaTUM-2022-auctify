@@ -8,6 +8,7 @@ import createEmotionCache from './common/createEmotionCache';
 import Home from '../src/pages/home';
 import Marketplace from './pages/marketplace';
 import CardDetails from './pages/card_details';
+import AuthForm from './components/auth/AuthForm';
 
 const emotionCache = createEmotionCache();
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/marketplace/:productId',
     element: <CardDetails />
+  },
+  {
+    path: '/auth',
+    element: <AuthForm />
   }
 ]);
 

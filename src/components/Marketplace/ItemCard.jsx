@@ -22,7 +22,7 @@ export default function ItemCard({ item }) {
       sx={{
         maxWidth: 345,
         minHeight: 200,
-        backgroundColor: '#075E82'
+        backgroundColor: '#40B7A0'
       }}
       onClick={() => {
         router(`/marketplace/${item._id}`);
