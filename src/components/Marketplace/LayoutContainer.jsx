@@ -6,7 +6,7 @@ export default function LayoutContainer() {
   return (
     <Box
       sx={{
-        ml: theme.spacing(30),
+        ml: theme.spacing(24),
         minHeight: '100%',
         padding: theme.spacing(4),
         backgroundColor: '#05182F'

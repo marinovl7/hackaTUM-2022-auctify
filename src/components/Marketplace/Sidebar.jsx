@@ -6,9 +6,9 @@ export default function Sidebar() {
     <Box
       sx={{
         position: 'absolute',
-        height: '100%',
-        width: theme.spacing(30),
         display: 'flex',
+        height: '100%',
+        width: theme.spacing(24),
         flexDirection: 'column',
         gap: theme.spacing(2),
         bgcolor: theme.palette.primary.dark,

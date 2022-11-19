@@ -7,6 +7,7 @@ import theme from './common/theme';
 import createEmotionCache from './common/createEmotionCache';
 import Home from '../src/pages/home';
 import Marketplace from './pages/marketplace';
+import CardDetails from './pages/card_details';
 
 const emotionCache = createEmotionCache();
 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />
+  },
+  {
+    path: '/items',
+    element: <CardDetails />
   }
 ]);
 

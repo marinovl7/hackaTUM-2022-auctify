@@ -6,14 +6,13 @@ import {
   Toolbar,
   Button,
   useTheme,
-  ListItem,
   List,
-  ListItemButton,
   Divider,
   ListItemText,
   Drawer
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const navItems = ['Marketplace', 'Login', 'Create Auction', 'Profile'];
@@ -39,13 +38,28 @@ export default function Navbar(props) {
         hAuction
       </Typography>
       <Divider sx={{ backgroundColor: theme.palette.primary.main }} />
-      <List>
+      <List
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'start',
+          flexDirection: 'column'
+        }}>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+          <Button key={item}>
+            <Link
+              relative="path"
+              to={`/marketplace`}
+              style={{
+                textAlign: 'center',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: theme.spacing(2.5)
+              }}
+              key={item}>
               <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+            </Link>
+          </Button>
         ))}
       </List>
     </Box>
@@ -83,8 +97,19 @@ export default function Navbar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff', fontSize: theme.spacing(2.5) }}>
-                {item}
+              <Button key={item}>
+                <Link
+                  relative="path"
+                  to={`/marketplace`}
+                  style={{
+                    textAlign: 'center',
+                    color: '#fff',
+                    textDecoration: 'none',
+                    fontSize: theme.spacing(2.5)
+                  }}
+                  key={item}>
+                  <ListItemText primary={item} />
+                </Link>
               </Button>
             ))}
           </Box>

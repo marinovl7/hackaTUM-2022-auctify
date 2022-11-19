@@ -7,7 +7,7 @@ export default function MarketplaceBanner() {
     <Box
       sx={{
         position: 'relative',
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: 3,
         height: theme.spacing(35)
       }}>
       <img src={marketplaceImg} alt="" style={{ height: theme.spacing(35), width: '100vw' }} />;

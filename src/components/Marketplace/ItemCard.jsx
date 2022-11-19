@@ -39,7 +39,6 @@ export default function ItemCard() {
           </Typography>
           <Grid
             container
-            xs={12}
             sx={{ color: theme.palette.primary.main, mt: theme.spacing(1) }}
             spacing={2}>
             <Grid item xs={4}>
