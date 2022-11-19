@@ -62,6 +62,46 @@ const addOneItem = (req, res) => {
     }
 }
 
+const getItemById = (req, res) => {
+    const path_params = req.params;
+    const query_params = req.query;
+    
+    if(!path_params.collection) {
+        res
+            .status(400)
+            .send({
+                status: "FAILED",
+                data: { error: "Collection name is missing" }
+            });
+        return;
+    }
+    const collectionName = path_params.collection;
+
+    if (!query_params
+    ) {
+        res
+            .status(400)
+            .send({
+                status: "Bad Request",
+                data: { error: "Query key value pairs are missing in request" }
+            });
+        return;
+    }
+
+    console.log(query_params)
+    let query = query_params;
+
+    try {
+        return ItemService.getItemById(collectionName, query)
+        /*.then((result) => {
+            res.status(200).send({ status: "OK", data: result });
+        }) */    
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 const getOneItem = (req, res) => {
     const path_params = req.params;
     const query_params = req.query;
@@ -254,6 +294,7 @@ function assembleJSON(name, category, notes, quantity, expirDate, addDate) {
 }
 
 module.exports = {
+    getItemById,
     addOneItem,
     getOneItem,
     getMultipleItems,

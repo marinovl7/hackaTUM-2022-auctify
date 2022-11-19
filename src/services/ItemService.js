@@ -10,6 +10,10 @@ const addOneItem = (collectionName, newItem) => {
     }
 }
 
+function getItemById(collectionName,query) {
+    return ItemData.getItemById(collectionName, query);
+}
+
 function getOneItem(collectionName, query) {
     return ItemData.getOneItem(collectionName, query);
 }
@@ -54,6 +58,7 @@ return earthRadiusKm * c;
 // clustering and data analysis
 
 module.exports = {
+    getItemById,
     addOneItem,
     getOneItem,
     getMultipleItems,

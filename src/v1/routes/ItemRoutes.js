@@ -11,5 +11,8 @@ router.get('/getMultipleItems/:collection', ItemController.getMultipleItems);
 
 router.get('/getAllItems/:collection', ItemController.getAllItems);
 
+router.get('/getItemById/:collection', ItemController.getItemById);
+
+router.delete('/deleteOneItem/:collection', ItemController.deleteOneItem);
 
 module.exports = router;
