@@ -3,7 +3,7 @@
 To start the frontend clone the repo and then
 
 ```bash
-cd hackatum-2022-frontend
+cd hackatum-2022-auctify
 npm i
 # and
 npm start
