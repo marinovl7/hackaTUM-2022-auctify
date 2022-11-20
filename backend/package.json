@@ -18,8 +18,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "seedProduct": "node ./seeds/product_seed",
-    "seedUser" : "node ./seeds/user_seed",
-    "start": "npm run seedProducts & npm run seedUser & npm run dev"
+    "seedUser": "node ./seeds/user_seed",
+    "start": "npm run seedUser & npm run dev & npm run seedProduct"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
