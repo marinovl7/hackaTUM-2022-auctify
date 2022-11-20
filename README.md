@@ -16,7 +16,10 @@ Then to run the backend
 ```bash
 cd backend
 # and
-npm start
+npm i
+npm run seedProduct
+npm run seedUser
+npm run dev
 ```
 
 Explore
